@@ -1,0 +1,40 @@
+name: hkjc-backup
+
+on:
+  schedule:
+    - cron: "30 16 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Restore latest odds DB
+        uses: actions/cache/restore@v4
+        with:
+          path: data/hkjc_odds.db
+          key: odds-db-none-${{ github.run_id }}
+          restore-keys: odds-db-
+          fail-on-cache-miss: true
+
+      - name: Online backup (sqlite backup API, consistent copy)
+        run: |
+          python - <<'EOF'
+          import gzip, shutil, sqlite3
+          src = sqlite3.connect("data/hkjc_odds.db")
+          dst = sqlite3.connect("backup.db")
+          src.backup(dst)
+          dst.close(); src.close()
+          with open("backup.db", "rb") as f, gzip.open("hkjc_odds_backup.db.gz", "wb") as g:
+              shutil.copyfileobj(f, g)
+          EOF
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hkjc-odds-backup-${{ github.run_id }}
+          path: hkjc_odds_backup.db.gz
+          retention-days: 30

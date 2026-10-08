@@ -1,0 +1,62 @@
+name: hkjc-settle
+
+on:
+  schedule:
+    - cron: "10 7 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  settle:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      HKJC_ODDS_TYPES: HAD,HDC,CHL,HIL,SGA,CHD
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-chromium-${{ hashFiles('requirements.txt') }}
+
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
+
+      - name: Restore odds DB (most recent working copy)
+        uses: actions/cache/restore@v4
+        with:
+          path: data/hkjc_odds.db
+          key: odds-db-none-${{ github.run_id }}
+          restore-keys: odds-db-
+
+      - name: Compute settlement date range
+        id: dates
+        run: |
+          START=$(date -d "7 days ago" +%Y-%m-%d)
+          END=$(date +%Y-%m-%d)
+          echo "start=$START" >> $GITHUB_OUTPUT
+          echo "end=$END" >> $GITHUB_OUTPUT
+
+      - name: Fetch & ingest settlements
+        timeout-minutes: 10
+        run: |
+          python fetch_settlement.py "${{ steps.dates.outputs.start }}" "${{ steps.dates.outputs.end }}" "$HKJC_ODDS_TYPES" --db data/hkjc_odds.db
+
+      - name: Save odds DB
+        if: success()
+        uses: actions/cache/save@v4
+        with:
+          path: data/hkjc_odds.db
+          key: odds-db-${{ github.run_id }}-${{ github.run_attempt }}

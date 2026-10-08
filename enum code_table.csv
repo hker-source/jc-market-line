@@ -1,0 +1,43 @@
+odds_name,odds_type,odds_format,graphql_enum,confirmed,page_url,note
+Main,had,,HAD,true,https://bet.hkjc.com/,auto-captured from page load
+Main,sga,,SGA,true,https://bet.hkjc.com/,auto-captured from page load
+HAD page,ngs,,NGS,true,https://bet.hkjc.com/en/football/had,auto-captured from page load
+HAD page,ent,,ENT,true,https://bet.hkjc.com/en/football/had,auto-captured from page load
+HAD page,nts,,NTS,true,https://bet.hkjc.com/en/football/had,auto-captured from page load
+HAD page,eha,,EHA,true,https://bet.hkjc.com/en/football/had,auto-captured from page load
+Team Corner HiLo (teamchl),chh,,CHH,true,https://bet.hkjc.com/en/football/teamchl,auto-captured from page load
+Team Corner HiLo (teamchl),ceh,,CEH,true,https://bet.hkjc.com/en/football/teamchl,auto-captured from page load
+Team Corner HiLo (teamchl),cha,,CHA,true,https://bet.hkjc.com/en/football/teamchl,auto-captured from page load
+Team Corner HiLo (teamchl),cea,,CEA,true,https://bet.hkjc.com/en/football/teamchl,auto-captured from page load
+Corner HiLo (chl),ech,,ECH,true,https://bet.hkjc.com/en/football/chl,auto-captured from page load
+Corner HiLo (chl),chl,,CHL,true,https://bet.hkjc.com/en/football/chl,auto-captured from page load
+HiLo (hil),hil,,HIL,true,https://bet.hkjc.com/en/football/hil,auto-captured from page load
+HiLo (hil),ehl,,EHL,true,https://bet.hkjc.com/en/football/hil,auto-captured from page load
+Correct Score (crs),ecs,,ECS,true,https://bet.hkjc.com/en/football/crs,auto-captured from page load
+Correct Score (crs),crs,,CRS,true,https://bet.hkjc.com/en/football/crs,auto-captured from page load
+First Team to Score (fts),fts,,FTS,true,https://bet.hkjc.com/en/football/fts,auto-captured from page load
+Team HiLo (teamhil),hla,,HLA,true,https://bet.hkjc.com/en/football/teamhil,auto-captured from page load
+Team HiLo (teamhil),elh,,ELH,true,https://bet.hkjc.com/en/football/teamhil,auto-captured from page load
+Team HiLo (teamhil),hlh,,HLH,true,https://bet.hkjc.com/en/football/teamhil,auto-captured from page load
+Team HiLo (teamhil),ela,,ELA,true,https://bet.hkjc.com/en/football/teamhil,auto-captured from page load
+Handicap (hdc),edc,,EDC,true,https://bet.hkjc.com/en/football/hdc,auto-captured from page load
+Handicap (hdc),hdc,,HDC,true,https://bet.hkjc.com/en/football/hdc,auto-captured from page load
+Corner Handicap (chd),chd,,CHD,true,https://bet.hkjc.com/en/football/chd,auto-captured from page load
+Corner Handicap (chd),ecd,,ECD,true,https://bet.hkjc.com/en/football/chd,auto-captured from page load
+Half/Full Time,hft,,HFT,true,,observed in FB5809 matchResultDetails settlement
+Total Goals,ttg,,TTG,true,,observed in FB5809 matchResultDetails settlement
+Odd/Even,ooe,,OOE,true,,observed in FB5809 matchResultDetails settlement
+Extra Time Goals,etg,,ETG,true,,observed in FB5809 matchResultDetails settlement
+First Half Correct Score,fcs,,FCS,true,,observed in FB5809 matchResultDetails settlement
+First Half (unverified),fha,,FHA,true,,observed in FB5809 matchResultDetails settlement
+First Half HiLo (unverified),flh,,FLH,true,,observed in FB5809 matchResultDetails settlement
+First Half HiLo (unverified),fla,,FLA,true,,observed in FB5809 matchResultDetails settlement
+First Half HiLo (unverified),fhh,,FHH,true,,observed in FB5809 matchResultDetails settlement
+First Corner HiLo (unverified),fch,,FCH,true,,observed in FB5809 matchResultDetails settlement
+First Half Corner (unverified),fhc,,FHC,true,,observed in FB5809 matchResultDetails settlement
+Corner Handicap First (unverified),cfh,,CFH,true,,observed in FB5809 matchResultDetails settlement
+Corner Handicap First (unverified),cfa,,CFA,true,,observed in FB5809 matchResultDetails settlement
+Extra Time (unverified),ehh,,EHH,true,,observed in FB5809 matchResultDetails settlement
+TQL (name unverified),tql,,TQL,true,,reported by user (page unknown)
+First Goal Scorer (unverified),fgs,,FGS,true,,reported by user (page unknown)
+MSP (name unverified),msp,,MSP,true,,reported by user (page unknown)

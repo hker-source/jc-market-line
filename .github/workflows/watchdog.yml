@@ -1,0 +1,46 @@
+name: hkjc-watchdog
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  freshness:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Restore latest odds DB
+        uses: actions/cache/restore@v4
+        with:
+          path: data/hkjc_odds.db
+          key: odds-db-none-${{ github.run_id }}
+          restore-keys: odds-db-
+          fail-on-cache-miss: true
+
+      - name: Check last scrape age
+        run: |
+          python - <<'EOF'
+          import sqlite3, sys
+          from datetime import datetime, timezone
+          con = sqlite3.connect("data/hkjc_odds.db")
+          last = con.execute("SELECT MAX(scraped_at) FROM odds_raw").fetchone()[0]
+          age = (datetime.now(timezone.utc) - datetime.fromisoformat(last)).total_seconds() / 60
+          print(f"last scrape {last}  age={age:.0f} min")
+          if age > 45:
+              print(f"::error::data stale: {age:.0f} min since last scrape")
+              sys.exit(1)
+          EOF

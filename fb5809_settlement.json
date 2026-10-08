@@ -1,0 +1,24 @@
+{
+  "id": "50076973",
+  "frontEndId": "FB5809",
+  "additionalResults": [],
+  "foPools": [
+    {
+      "id": "1977556001",
+      "status": "PAYOUTSTARTED",
+      "oddsType": "HAD",
+      "instNo": 0,
+      "name_ch": "",
+      "name_en": "",
+      "lines": [
+        {
+          "combinations": [
+            {"str": "A", "status": "LOSE", "winOrd": "3", "selections": [{"selId": "2", "str": "A", "name_ch": "客隊勝", "name_en": "Away"}]},
+            {"str": "D", "status": "WIN", "winOrd": "2", "selections": [{"selId": "3", "str": "D", "name_ch": "和", "name_en": "Draw"}]},
+            {"str": "H", "status": "LOSE", "winOrd": "1", "selections": [{"selId": "1", "str": "H", "name_ch": "主隊勝", "name_en": "Home"}]}
+          ]
+        }
+      ]
+    }
+  ]
+}
